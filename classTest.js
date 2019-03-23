@@ -64,6 +64,7 @@ var Rhino = /** @class */ (function (_super) {
     }
     return Rhino;
 }(Animal2));
+//和类Animal2结构相似，但是有私有变量，不能兼容
 var Employee = /** @class */ (function () {
     function Employee(theName) {
         this.name = theName;
@@ -74,7 +75,7 @@ var animal = new Animal2("Goat");
 var rhino = new Rhino();
 var employee = new Employee("Bob");
 animal = rhino;
-animal = employee; // Error: Animal and Employee are not compatible--若是该为pulbic 则类互相兼容
+// animal = employee; // Error: Animal and Employee are not compatible--若是该为pulbic 则类互相兼容,两个类结构相似
 /**protected test */
 var Person33 = /** @class */ (function () {
     function Person33(name) {
@@ -96,8 +97,10 @@ var Employee33 = /** @class */ (function (_super) {
 }(Person33));
 var howard = new Employee33("Howard", "Sales");
 console.log(howard.getElevatorPitch());
-console.log(howard.name); // error
+//类的外部，不能直接访问父类的受保护的域
+// console.log(howard.name); // error
 /**构造函数的protected */
+//受保护的构造函数测试
 var Person44 = /** @class */ (function () {
     function Person44(theName) {
         this.name = theName;
@@ -118,7 +121,8 @@ var Employee44 = /** @class */ (function (_super) {
     return Employee44;
 }(Person44));
 var howard44 = new Employee44("Howard", "Sales");
-var john44 = new Person44("John"); // Error: The 'Person' constructor is protected
+//受保护的构造函数，不能实例化
+// let john44 = new Person44("John"); // Error: The 'Person' constructor is protected
 /**参数属性 */
 //在构造函数声明变量--添加了访问规则private等，以及赋值
 //比在类里面声明，在构造时赋值要简便一些

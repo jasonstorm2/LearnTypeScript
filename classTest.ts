@@ -39,6 +39,7 @@ class Rhino extends Animal2 {  //同一个 private 同一个来源
     constructor() { super("Rhino"); }
 }
 
+//和类Animal2结构相似，但是有私有变量，不能兼容
 class Employee {
     private name: string;
     constructor(theName: string) { this.name = theName; }
@@ -49,7 +50,7 @@ let rhino = new Rhino();
 let employee = new Employee("Bob");
 
 animal = rhino;
-animal = employee; // Error: Animal and Employee are not compatible--若是该为pulbic 则类互相兼容
+// animal = employee; // Error: Animal and Employee are not compatible--若是该为pulbic 则类互相兼容,两个类结构相似
 
 /**protected test */
 class Person33 {
@@ -72,9 +73,11 @@ class Employee33 extends Person33 {
 
 let howard = new Employee33("Howard", "Sales");
 console.log(howard.getElevatorPitch());
-console.log(howard.name); // error
+//类的外部，不能直接访问父类的受保护的域
+// console.log(howard.name); // error
 
 /**构造函数的protected */
+//受保护的构造函数测试
 class Person44 {
     protected name: string;
     protected constructor(theName: string) { this.name = theName; }
@@ -95,7 +98,8 @@ class Employee44 extends Person44 {
 }
 
 let howard44 = new Employee44("Howard", "Sales");
-let john44 = new Person44("John"); // Error: The 'Person' constructor is protected
+//受保护的构造函数，不能实例化
+// let john44 = new Person44("John"); // Error: The 'Person' constructor is protected
 
 /**参数属性 */
 //在构造函数声明变量--添加了访问规则private等，以及赋值
